@@ -1,0 +1,22 @@
+<!DOCTYPE >
+<html>
+<head>
+    
+    {% if judul %}
+    <title>Flask Blog - {{ judul }}</title>
+    {% else %}        
+    <title>Flask Blog</title>
+    {% endif %}
+        
+</head>
+<body>
+    
+    {% for post in posts %}
+        <h1>{{post.judul}}</h1>
+        <p>Oleh {{post.penulis}} , {{post.date_post}}</p>
+        <p>{{ post.isi}}</p>
+    {% endfor %}
+    
+        
+</body>
+</html>
