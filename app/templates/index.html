@@ -1,10 +1,17 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    {% for post in posts %}
-        <h1>{{post.judul}}</h1>
-        <p>Oleh {{post.penulis}} , {{post.date_post}}</p>
-        <p>{{ post.isi}}</p>
+    {% for post in posts %}         
+        <article class="media content-section">
+            <div class="media-body">
+            <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.penulis }}</a>
+            <small class="text-muted">{{ post.date_post }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ post.judul }}</a></h2>
+            <p class="article-content">{{ post.isi }}</p>
+            </div>
+        </article>
     {% endfor %}    
 {% endblock content %}
     
