@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, url_for
+# from .forms import RegisterForm, LoginForm
 
 posts = [
     {
@@ -23,3 +24,4 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html', judul='About')
+
