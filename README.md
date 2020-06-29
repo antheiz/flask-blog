@@ -12,5 +12,5 @@ Learn Flask-blog from here https://youtu.be/MwZwr5Tvyxo
   * flask-wtf
   * email_validation
   
- Thankyou!
+ Thankyou !
   
