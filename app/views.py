@@ -29,8 +29,17 @@ def about():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        flash(f'Success account {{form.username.data}} created', 'success')
+        flash(f'Account {form.username.data} berhasil dibuat !', 'success')
         return redirect(url_for('index'))
-    return render_template('register.html', form=form)
+    return render_template('register.html', judul='Sign Up', form=form)
 
-
+@app.route('/login', methods=['GET','POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'theis@theis.id' and form.password.data == 'theis':
+            flash(f'Succesfull, Welcome {form.email.data}', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('You Don\'t login, Please check your username and password ', 'danger')
+    return render_template('login.html',judul='Sign In', form=form)
