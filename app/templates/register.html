@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+    {{form.username.label(for="inputUsername")}}
+    {% if form.username.errors %}
+        {{form.username(class="form-control is-invalid", id="inputUsername")}}
+        <div class="invalid-feedback">
+            {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% else %}
+        {{ form.username(class="form-control form-control-lg", id="inputUsername") }}  
+    {% endif %}
+    
+    </div>
+    <div class="form-group">    
+        {{ form.email.label(for="inputEmail")}}
+        {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid", id="inputEmail")}}                        
+            <div class="invalid-feedback">
+            {% for error in form.email.errors %}             
+                {{error}}                
+            {% endfor %}
+            </div>
+        {% else %}
+            {{form.username(class='form-control form-control-lg')}}
+        {% endif %}        
+    </div>
+    <div class="form-group">
+        {{form.password.label(for="inputPassword")}}        
+        {% if form.password.errors %}
+            {{ form.password(class='form-control is-invalid', id='inputPassword') }}            
+            <div class="invalid-feedback">
+                {% for error in form.password.errors %}
+                    {{error}}
+                {% endfor %}   
+            </div>             
+        {% else %}
+            {{ form.password(class='form-control form-control-lg', id='inputPassword') }}            
+        {% endif %}                
+    </div>
+    <div class="form-group">
+        {{form.confirm_password.label(for="inputconfirm_Password")}}        
+        {% if form.confirm_password.errors %}
+            {{ form.confirm_password(class='form-control is-invalid', id='inputconfirm_Password') }}            
+            <div class="invalid-feedback">
+                {% for error in form.confirm_password.errors %}
+                    {{error}}
+                {% endfor %}   
+            </div>             
+        {% else %}
+            {{ form.confirm_password(class='form-control form-control-lg', id='inputconfirm_Password') }}            
+        {% endif %}  
+    </div>
+    {{form.submit(class="btn btn-success")}}
+
+    
+</form>
+<div>
+    <label>
+        if you have account, you can <a href="#">Log In</a>
+    </label>
+</div>
+{% endblock content %}
+    
+
+<!-- 
+    <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div> 
+-->
