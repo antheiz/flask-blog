@@ -7,10 +7,14 @@ Learn Flask-blog
   * cd flask-blog/
   * python run.py 
   
-  #### Don't forget to install 
-  * flask
-  * flask-wtf
-  * email_validation
+  #### Don't forget to manage 
+  * python -m venv env-flask
+  * source env-flask/bin/activate/
+  * pip install flask
+  * pip install flask-wtf
+  * pip install email-validator
+  * pip install flask-sqlalchemy
+  * pip install flask-bcrypt
   
  Thankyou !
   
