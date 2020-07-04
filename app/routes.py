@@ -7,6 +7,10 @@ def index():
     judul = 'Flask | Home'
     return render_template ('index.html',judul=judul)
 
+@app.route('/about')
+def about():
+    judul = 'Flask | About'
+    return render_template('about.html', judul=judul)
 
 @app.route('/login', methods=['get','post'])
 def login():

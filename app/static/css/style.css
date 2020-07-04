@@ -1,12 +1,11 @@
-	/* Coded with love by Mutiullah Samim */
     body,
-    html {
+    html {        
+        position: relative;
         margin: 0;
         padding: 0;
         height: 100%;
         background: #d6dad5 !important;
     }
-    /* #60a3bc */
     .user_card {
         height: 500px;
         width: 370px;
@@ -48,7 +47,6 @@
         background: #c0392b !important;
         color: white !important;
     }
-    /* #c0392b */
     .login_btn:focus {
         box-shadow: none !important;
         outline: 0px !important;
@@ -57,7 +55,6 @@
         padding: 0 2rem;
     }
     .input-group-text {
-        /* background: #8bbcf1 !important; */
         color: white !important;
         border: 0 !important;
         border-radius: 0.25rem 0 0 0.25rem !important;
@@ -70,15 +67,16 @@
     .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
         background-color: #c0392b !important;
     }
-    #home {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+
     .response {
         height: 100px;
     }
-    #index-home {
-        width: 300px;
+
+    footer{ 
+        margin-top: 20px;       
+        position: absolute;
+        width: 100%;
+        height: 70px;
+        bottom: 0;
+        background-color:rgb(71, 70, 70);
     }

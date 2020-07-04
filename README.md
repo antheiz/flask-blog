@@ -1,5 +1,5 @@
 # flask-blog
-Learn Flask-blog 
+Learn Flask-blog
 
 ### how to run this program
 

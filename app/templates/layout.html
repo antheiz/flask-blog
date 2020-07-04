@@ -3,22 +3,60 @@
 
 <head>
     <title>{{judul}}</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
-        integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}">
 </head>
-<!--Coded with love by Mutiullah Samim-->
 
 <body>
-    <div class="container h-100" id="home">
 
+    <div>
+        <nav class="navbar navbar-expand-lg text-white  navbar-dark bg-primary" , style="margin-bottom:150px;">
+            <a class="navbar-brand " href="{{ url_for ('index') }}"><i class="fab fa-python"
+                    style="font-size:30px; padding-left: 12px;"></i></a>
+            <button class="navbar-toggler btn btn-white" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav text-white ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('about') }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('login') }}">Sign in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('register') }}">Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home page -->
+        {% block index %}
+
+        {% endblock index %}
+
+        <!-- Login/Register and Other-->
         {% block content %}
 
         {% endblock content %}
+
+
     </div>
+
+    <footer> 
+        <div class="container">
+          <p class="m-0 text-center pt-4 text-white">Copyright &copy; Flask Blog 2020 - Build by <a href="https://instagram.com/theiz.andatu">Theis Andatu</a>  </p>
+        </div>
+      </footer>
+
+    <script src="{{ url_for ('static', filename='js/jquery.min.js') }}"></script>
 </body>
 
 </html>
