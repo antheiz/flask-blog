@@ -1,49 +1,77 @@
 {% extends 'layout.html' %}
 
+
 {% block content %}
-<legend>Sign In</legend>
-<form action="" method="POST">
-    {{ form.hidden_tag() }}
-    <div class="form-group">
-        {{ form.email.label(for='inputEmail') }}            
-        {% if form.email.errors %}
-            {{ form.email(class='form-control is-invalid', id='inputEmail')}}                
-            <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                    {{error}}
-                {% endfor %}   
-            </div>             
-        {% else %}
-            {{ form.email(class='form-control', id='inputEmail')}}                                    
-        {% endif %} 
-    </div>
-    <div class="form-group">
-        {{ form.password.label(for='inputPassword') }}            
-        {% if form.password.errors %}
-            {{ form.password(class='form-control is-invalid', id='inputPassword')}}                
-            <div class="invalid-feedback">
-                {% for error in form.password.errors %}
-                    {{error}}
-                {% endfor %}   
-            </div>             
-        {% else %}
-            {{ form.password(class='form-control', id='inputUsername')}}                                    
-        {% endif %} 
-    </div>
-    <div>
-        {{ form.remember }}
-        {{ form.remember.label }}        
-    </div>
-    <div class="form-group">
-        {{ form.submit(class='btn btn-success') }}
-    </div>
-    <small class="text-muted">
-        <a href="#">Forgot password?</a>
-    </small>
-    <hr>
-</form>
-<small class="text-muted">
-    if you don't have acount, please <a href="{{ url_for('login') }}">Sign Up</a>
-</small>
+<div class="d-flex justify-content-center h-100">
+	<div class="user_card">
+		<div class="d-flex justify-content-center ">
+			<div class="brand_logo_container">
+				<img src="{{ url_for ('static', filename='img/avatar.png') }}" class="brand_logo" alt="Logo">
+			</div>
+		</div>
+		<!-- <i class="fa fa-envelope" aria-hidden="true"></i> -->
+		
+		<div class="d-flex justify-content-center form_container">
+			<form action="" method="POST">
+				{{ form.hidden_tag() }}
+				<div class="text-center">
+					{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<div class="alert alert-{{ category }}">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endif %}
+					{% endwith %}
+				</div>
+                <div class="input-group mb-3">
+                    <div class="input-group-append ">
+                        <span class="btn btn-primary"><i class="fa fa-envelope"></i></span>
+                    </div>
+                    {% if form.email.errors %}
+                        {{ form.email(class='form-control is-invalid input_user', placeholder='email') }}
+                        <div class="text-center invalid-feedback">
+                            {% for error in form.email.errors %}
+                            {{error}}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class='form-control input_user', placeholder='email') }}
+                    {% endif %}
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-append">
+                        <span class="btn btn-primary"><i class="fas fa-key"></i></span>
+                    </div>
+                    {% if form.password.errors %}
+                        {{ form.password(class='form-control is-invalid input_user', placeholder='password') }}
+                        <div class="text-center invalid-feedback">
+                            {% for error in form.password.errors %}
+                            {{error}}
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                       {{ form.password(class='form-control input_user', placeholder='password') }}
+                    {% endif %}
+                </div> <br>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                    {{ form.submit(class='btn btn-primary') }}
+                </div>
+
+            </form>
+		</div>
+		
+		<div class="mt-4">
+			<div class="d-flex justify-content-center links mb-3">
+				Don't have an account? <a href="{{ url_for ('register') }}" class="ml-2">Sign up</a>
+			</div>
+			<div class="d-flex justify-content-center links">
+				<a href="#">Forgot your password?</a>
+			</div>
+		</div>
+		
+	</div>
+</div>
 {% endblock content %}
-    
+	
