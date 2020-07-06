@@ -12,7 +12,7 @@
 <body>
 
     <div>
-        <nav class="navbar navbar-expand-lg text-white  navbar-dark bg-primary" , style="margin-bottom:150px;">
+        <nav class="navbar navbar-expand-lg text-white fixed-top  navbar-dark bg-primary">
             <a class="navbar-brand " href="{{ url_for ('index') }}"><i class="fab fa-python"
                     style="font-size:30px; padding-left: 12px;"></i></a>
             <button class="navbar-toggler btn btn-white" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -50,11 +50,6 @@
 
     </div>
 
-    <footer> 
-        <div class="container">
-          <p class="m-0 text-center pt-4 text-white">Copyright &copy; Flask Blog 2020 - Build by <a href="https://instagram.com/theiz.andatu">Theis Andatu</a>  </p>
-        </div>
-      </footer>
 
     <script src="{{ url_for ('static', filename='js/jquery.min.js') }}"></script>
 </body>
