@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{judul}}</title>
+    <title>Flask | {{judul}}</title>
     <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -27,12 +27,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for ('about') }}">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for ('login') }}">Sign in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for ('register') }}">Sign up</a>
-                    </li>
+                    
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('account') }}">Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('logout') }}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('login') }}">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('register') }}">Sign up</a>
+                        </li>
+                    {% endif %}
+                        
                 </ul>
             </div>
         </nav>
