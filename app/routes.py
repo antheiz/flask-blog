@@ -2,6 +2,7 @@ from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash
 from app.models import User, Post
 from .forms import RegisterForm, LoginForm
+from flask_login import login_user
 
 @app.route('/', methods=['get','post'])
 def index():
@@ -12,18 +13,6 @@ def index():
 def about():
     judul = 'Flask | About'
     return render_template('about.html', judul=judul)
-
-@app.route('/login', methods=['get','post'])
-def login():
-    judul = 'Flask | Login'
-    form = LoginForm()
-    if form.validate_on_submit():
-        if form.email.data == 'theis@gmail.com' and form.password.data == 'a':
-            flash(f'Successfull, Welcome','success')
-            return redirect(url_for('index'))
-        else:
-            flash(f'Failed, Please Try Again','danger')            
-    return render_template ('login.html', form=form, judul=judul)
 
 @app.route('/register', methods=['get','post'])
 def register():
@@ -36,3 +25,18 @@ def register():
         db.session.commit()
         flash('Account has been create, Please','success')                  
     return render_template ('register.html', form=form ,judul=judul)
+
+
+@app.route('/login', methods=['get','post'])
+def login():
+    judul = 'Flask | Login'
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            return redirect(url_for('index'))
+        else:            
+            flash(f'Failed, Please Try Again','danger')            
+    return render_template ('login.html', form=form, judul=judul)
+
