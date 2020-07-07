@@ -26,24 +26,22 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for ('about') }}">About</a>
-                    </li>
-                    
+                    </li>                         
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for ('account') }}">Account</a>
-                        </li>
+                        </li>    
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for ('logout') }}">Logout</a>
-                        </li>
+                        </li> 
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for ('login') }}">Sign in</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for ('register') }}">Sign up</a>
-                        </li>
-                    {% endif %}
-                        
+                        </li>     
+                    {% endif %}                                                             
                 </ul>
             </div>
         </nav>

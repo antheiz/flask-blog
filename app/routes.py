@@ -1,7 +1,7 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
-from app.models import User, Post
-from .forms import RegisterForm, LoginForm
+from .forms import LoginForm, RegisterForm
+from .models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/', methods=['get','post'])
@@ -17,12 +17,13 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegisterForm()
-    if form.validate_on_submit():  
+    if form.validate_on_submit():
         hash_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hash_pw)
         db.session.add(user)
         db.session.commit()
-        flash('Account has been create, Please','success')                  
+        flash('Account has been create, Please', 'success')
+        return redirect(url_for('register'))
     return render_template ('register.html', form=form ,judul='Register')
 
 
@@ -37,8 +38,8 @@ def login():
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('index'))
-        else:            
-            flash(f'Failed, Please Try Again','danger')            
+        else:
+            flash('Failed, please try again.','danger')
     return render_template ('login.html', form=form, judul='Login')
 
 
