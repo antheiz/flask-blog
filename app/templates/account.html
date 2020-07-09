@@ -2,5 +2,8 @@
 
 
 {% block content %}
-    <h1 class="text-center" style="padding: 250px;">Hello, Welcome {{ current_user.username }}</h1>
+    <div class="text-center" style="padding: 250px;">
+        <h2>Hello,{{ current_user.username }}</h2>
+        <p>{{ current_user.email }}</p>
+    </div>
 {% endblock content %}

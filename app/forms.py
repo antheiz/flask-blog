@@ -4,21 +4,21 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationE
 from .models import User
 
 class RegisterForm(FlaskForm):
-    username = StringField('Username ', validators=[DataRequired(), Length(min=4, max=20) ])
-    email = StringField('Email ', validators=[DataRequired(),Email('Email Failed, Please check your Email') ])
-    password = PasswordField('Password ', validators=[DataRequired()])
-    repeat_password = PasswordField('Repeat Password ', validators=[DataRequired(), EqualTo('password', message='Password Failed, Please check your Password')])
-    submit = SubmitField('Sign Up')
+    username = StringField('username ', validators=[DataRequired(), Length(min=4, max=20, message='username minimal 4 huruf') ])
+    email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
+    password = PasswordField('password ', validators=[DataRequired()])
+    repeat_password = PasswordField('repeat_password ', validators=[DataRequired(), EqualTo('password', message='password salah')])
+    submit = SubmitField('Daftar')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('This email already register, please login.')
+            raise ValidationError('email telah tersedia, silakan login')
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email ', validators=[DataRequired(),Email('Email Failed, Please check your Email') ])
-    password = PasswordField('Passowrd ', validators=[DataRequired()])
-    remember = BooleanField('Remember me', default=False)
-    submit = SubmitField('Sign in')
+    email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
+    password = PasswordField('passowrd ', validators=[DataRequired()])
+    remember = BooleanField('ingat saya', default=False)
+    submit = SubmitField('Masuk')
     

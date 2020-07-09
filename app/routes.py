@@ -4,7 +4,7 @@ from .forms import LoginForm, RegisterForm
 from .models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
-@app.route('/', methods=['get','post'])
+@app.route('/', methods=['GET','POST'])
 def index():
     return render_template ('index.html',judul='Home')
 
@@ -12,7 +12,7 @@ def index():
 def about():
     return render_template('about.html', judul='About')
 
-@app.route('/register', methods=['get','post'])
+@app.route('/register', methods=['GET','POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -22,12 +22,12 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hash_pw)
         db.session.add(user)
         db.session.commit()
-        flash('Account has been create, Please', 'success')
+        flash('Akun telah dibuat, silakan', 'success')
         return redirect(url_for('register'))
     return render_template ('register.html', form=form ,judul='Register')
 
 
-@app.route('/login', methods=['get','post'])
+@app.route('/login', methods=['GET','POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -39,14 +39,14 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
-            flash('Failed, please try again.','danger')
+            flash('gagal login, silakan coba lagi.','danger')
     return render_template ('login.html', form=form, judul='Login')
 
 
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 @app.route('/account')
 @login_required
