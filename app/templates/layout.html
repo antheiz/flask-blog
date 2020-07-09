@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flask | {{judul}}</title>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div>
+        <nav class="navbar navbar-expand-lg text-white fixed-top  navbar-dark bg-primary">
+            <a class="navbar-brand " href="{{ url_for ('index') }}"><i class="fab fa-python"
+                    style="font-size:30px; padding-left: 12px;"></i></a>
+            <button class="navbar-toggler btn btn-white" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav text-white ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('about') }}">About</a>
+                    </li>                         
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('account') }}">Account</a>
+                        </li>    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('logout') }}">Logout</a>
+                        </li> 
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('login') }}">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for ('register') }}">Sign up</a>
+                        </li>     
+                    {% endif %}                                                             
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Home page -->
+        {% block index %}
+
+        {% endblock index %}
+
+        <!-- Login/Register and Other-->
+        {% block content %}
+
+        {% endblock content %}
+
+
+    </div>
+
+
+    <script src="{{ url_for ('static', filename='js/jquery.min.js') }}"></script>
+</body>
+
+</html>
