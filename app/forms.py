@@ -26,6 +26,6 @@ class LoginForm(FlaskForm):
 class AccountForm(FlaskForm):
     email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
     username = StringField('username ', validators=[DataRequired(), Length(min=4, max=20, message='username minimal 4 huruf') ])
-    picture = FileField('Image', validators=[FileAllowed('jpg','png')])
+    picture = FileField('Update Profile', validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Simpan')
     
