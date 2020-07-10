@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+<div class="container text-center">
+    <div class="mr-5">
+        <h4 style="padding-top:100px;padding-left:40px;">Account Info</h4>
+    </div>
+    <div>
+        <img class="rounded-circle mt-2" style="height: 200px;"
+            src="{{ url_for ('static', filename='img/avatar.png') }}">
+    </div>
+    <div class="mt-5">
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="text-center">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+            <div class="input-group mb-3" style="width: 300px; margin-left: 36%;">
+                <div class="input-group-append ">
+                    <span class="btn btn-primary"><i class="fa fa-envelope"></i></span>
+                </div>
+                {% if form.username.errors %}
+                    {{ form.username(class='form-control is-invalid input_user', placeholder='username') }}
+                    <div class="text-center invalid-feedback">
+                        {% for error in form.username.errors %}
+                        {{error}}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class='form-control input_user', placeholder='username') }}
+                {% endif %}
+            </div>
+            <div class="input-group mb-2" style="width: 300px;margin-left: 36%;">
+                <div class="input-group-append">
+                    <span class="btn btn-primary"><i class="fa fa-key"></i></span>
+                </div>
+                {% if form.email.errors %}
+                    {{ form.email(class='form-control is-invalid input_user', placeholder='email') }}
+                    <div class="text-center invalid-feedback">
+                        {% for error in form.email.errors %}
+                        {{error}}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                   {{ form.email(class='form-control input_user', placeholder='email') }}
+                {% endif %}
+            </div> <br>
+            <div class="d-flex justify-content-center mt-3 login_container">
+                {{ form.submit(class='btn btn-primary') }}
+            </div>
+
+    </div>
+
+    
+        
+</div>
+{% endblock content %}

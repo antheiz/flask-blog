@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from .models import User
@@ -21,4 +22,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('passowrd ', validators=[DataRequired()])
     remember = BooleanField('ingat saya', default=False)
     submit = SubmitField('Masuk')
+
+class AccountForm(FlaskForm):
+    email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
+    username = StringField('username ', validators=[DataRequired(), Length(min=4, max=20, message='username minimal 4 huruf') ])
+    picture = FileField('Image', validators=[FileAllowed('jpg','png')])
+    submit = SubmitField('Simpan')
     

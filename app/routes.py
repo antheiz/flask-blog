@@ -1,6 +1,6 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, AccountForm
 from .models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -52,3 +52,9 @@ def logout():
 @login_required
 def account():
     return render_template('account.html', judul='Account')
+
+@app.route('/account/edit')
+@login_required
+def editaccount():
+    form = AccountForm()
+    return render_template('edit_account.html', form=form, judul='Account')
