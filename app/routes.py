@@ -51,6 +51,8 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+#for image settings 
+"""
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
@@ -63,6 +65,7 @@ def save_picture(form_picture):
     i.save(picture_path)
 
     return picture_fn
+""" 
 
 
 @app.route("/account", methods=['GET', 'POST'])
