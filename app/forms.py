@@ -29,3 +29,9 @@ class AccountForm(FlaskForm):
     picture = FileField('Update Profile', validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Simpan')
     
+    def validate_email(self, email):
+        if email.data != form.user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError(f'email {form.user.email} 
+ 
