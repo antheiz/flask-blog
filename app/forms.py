@@ -33,5 +33,5 @@ class AccountForm(FlaskForm):
         if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError(f'email {_user.email} 
+                raise ValidationError(f'email {form.email.data} sudah terpakai ') 
  
