@@ -30,8 +30,8 @@ class AccountForm(FlaskForm):
     submit = SubmitField('Simpan')
     
     def validate_email(self, email):
-        if email.data != form.user.email:
+        if email.data != current_user.email:
             user = User.query.filter_by(email=email.data).first()
             if user:
-                raise ValidationError(f'email {form.user.email} 
+                raise ValidationError(f'email {_user.email} 
  
