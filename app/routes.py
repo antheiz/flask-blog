@@ -25,7 +25,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hash_pw)
         db.session.add(user)
         db.session.commit()
-        flash('Akun telah dibuat, silakan', 'success')
+        flash('Akun berhasil dibuat, silakan', 'success')
         return redirect(url_for('register'))
     return render_template ('register.html', form=form ,judul='Register')
 
@@ -51,6 +51,7 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+
 #for image settings 
 """
 def save_picture(form_picture):
@@ -67,15 +68,12 @@ def save_picture(form_picture):
     return picture_fn
 """ 
 
-
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
     form = AccountForm()
     if form.validate_on_submit():
         #for upload pictures 
-    
-
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
