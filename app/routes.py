@@ -25,7 +25,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hash_pw)
         db.session.add(user)
         db.session.commit()
-        flash('Akun telah dibuat, silakan', 'success')
+        flash('Akun berhasil dibuat, silakan', 'success')
         return redirect(url_for('register'))
     return render_template ('register.html', form=form ,judul='Register')
 
@@ -51,6 +51,8 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+
+#for image settings 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
@@ -72,7 +74,7 @@ def account():
     form = AccountForm()
     if form.validate_on_submit():
         if form.picture.data:
-            picture_file = save_picture(form.picture.data)
+            picture_file = save_picture(picture_path)
             current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data     
