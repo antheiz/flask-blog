@@ -1,5 +1,6 @@
 import os
 import secrets
+from PIL import Image
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
 from .forms import LoginForm, RegisterForm, AccountForm
@@ -55,7 +56,12 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/img', picture_fn)
-    form_picture.save(picture_path)
+    # form_picture.save(picture_path)
+
+    output_size = (225,225)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
 
     return picture_fn
 
