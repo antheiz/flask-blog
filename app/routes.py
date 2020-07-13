@@ -1,6 +1,5 @@
 import os
 import secrets
-from PIL import Image
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
 from .forms import LoginForm, RegisterForm, AccountForm
@@ -56,16 +55,12 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/img', picture_fn)
-
-    output_size = (225, 225)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
+    form_picture.save(picture_path)
 
     return picture_fn
 
 
-@app.route("/account", methods=['GET', 'POST'])
+@app.route('/account', methods=['get','post'])
 @login_required
 def account():
     form = AccountForm()
@@ -74,13 +69,15 @@ def account():
             picture_file = save_picture(form.picture.data)
             current_user.image_file = picture_file
         current_user.username = form.username.data
-        current_user.email = form.email.data
+        current_user.email = form.email.data     
         db.session.commit()
-        flash('Your account has been updated!', 'success')
+        flash('profil berhasil diupdate','success')
         return redirect(url_for('account'))
-    elif request.method == 'GET':
+    else:
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='img/' + current_user.image_file)
-    return render_template('account.html', judul='Account',image_file=image_file, form=form)
+    return render_template('account.html', image_file=image_file, form=form, judul='Account')
+
+
 

@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from flask_wtf.file import FileField, FileAllowed
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
@@ -16,16 +17,23 @@ class RegisterForm(FlaskForm):
         if user:
             raise ValidationError('email telah tersedia, silakan login')
 
-
 class LoginForm(FlaskForm):
     email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
-    password = PasswordField('passowrd ', validators=[DataRequired()])
+    password = PasswordField('password ', validators=[DataRequired()])
     remember = BooleanField('ingat saya', default=False)
     submit = SubmitField('Masuk')
 
 class AccountForm(FlaskForm):
     email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
     username = StringField('username ', validators=[DataRequired(), Length(min=4, max=20, message='username minimal 4 huruf') ])
-    picture = FileField('Update Profile', validators=[FileAllowed(['jpg','png'])])
+    picture = FileField('Change Profile', validators=[FileAllowed(['jpg','png'])])
     submit = SubmitField('Simpan')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError(f'email {email.data} telah terpakai')
+
+
     
