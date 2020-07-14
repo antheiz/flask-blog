@@ -9,11 +9,11 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template ('index.html',judul='Home')
+    return render_template ('index.jinja2',judul='Home')
 
 @app.route('/about')
 def about():
-    return render_template('about.html', judul='About')
+    return render_template('about.jinja2', judul='About')
 
 @app.route('/register', methods=['GET','POST'])
 def register():
@@ -27,7 +27,7 @@ def register():
         db.session.commit()
         flash('Akun berhasil dibuat, silakan', 'success')
         return redirect(url_for('register'))
-    return render_template ('register.html', form=form ,judul='Register')
+    return render_template ('register.jinja2', form=form ,judul='Register')
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -43,7 +43,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
             flash('gagal login, silakan coba lagi.','danger')
-    return render_template ('login.html', form=form, judul='Login')
+    return render_template ('login.jinja2', form=form, judul='Login')
 
 
 @app.route('/logout')
@@ -85,7 +85,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='img/' + current_user.image_file)
-    return render_template('account.html', image_file=image_file, form=form, judul='Account')
+    return render_template('account.jinja2', image_file=image_file, form=form, judul='Account')
 
 
 
