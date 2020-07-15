@@ -3,13 +3,14 @@ import secrets
 from PIL import Image
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request
-from .forms import LoginForm, RegisterForm, AccountForm
-from .models import User
+from .forms import LoginForm, RegisterForm, AccountForm, PostForm
+from .models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template ('index.html',judul='Home')
+    posts = Post.query.all()
+    return render_template ('index.html',judul='Home', posts=posts)
 
 @app.route('/about')
 def about():
@@ -87,5 +88,17 @@ def account():
     image_file = url_for('static', filename='img/' + current_user.image_file)
     return render_template('account.html', image_file=image_file, form=form, judul='Account')
 
+
+@app.route('/post/new', methods=['get','post'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        posts = Post(title=form.title.data, content=form.content.data, author=current_user )
+        db.session.add(posts)
+        db.session.commit()        
+        flash('Postingan berhasil diupload','success')
+        return redirect(url_for('index'))
+    return render_template('create_post.html', form=form, judul='New Post')
 
 
