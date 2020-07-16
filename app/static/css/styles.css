@@ -1,8 +1,7 @@
 body,
 html {        
-    position: relative;
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     height: 100%;
     background: #edeef5;
 }
@@ -71,4 +70,5 @@ html {
 .response {
     height: 100px;
 }
+
 

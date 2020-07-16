@@ -38,4 +38,4 @@ class AccountForm(FlaskForm):
 class PostForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
     content = TextAreaField('content', validators=[DataRequired()])
-    submit = SubmitField('Simpan')
+    submit = SubmitField('Publish')
