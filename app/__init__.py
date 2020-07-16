@@ -5,13 +5,15 @@ from flask_login import LoginManager
 
 app = Flask(__name__)
 app.secret_key = 'ioafhwa97e9032iakdnwi'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://theis:salupa@localhost/flaskblog'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flaskblog.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://theis:salupa@localhost/flaskblog'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'danger'
+
 from app import routes
 
 
