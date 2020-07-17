@@ -26,7 +26,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h2 class="card-title">{{post.title}}</h2>
-          <p class="card-text">{{post.content}}</p>
+          <p class="card-text">{{post.content|striptags}}</p>
           <a href="{{url_for('postingan',post_id=post.id)}}" class="btn btn-primary">Read More &rarr;</a>
         </div>
         <div class="card-footer text-muted">
@@ -35,7 +35,8 @@
         </div>
       </div>    
       {% endfor %}
-        
+      
+     
      
       <!-- Pagination -->
       <!-- <nav style="margin-bottom: 50px;">

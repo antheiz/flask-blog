@@ -2,9 +2,8 @@
 
 
 {% block content %}
-<div class="container">
-    <div style="padding: 250px; margin-top: 120px; background-color: rgb(207, 210, 214);">
-        <legend style="margin-bottom: 40px; text-align: center;">{{legend}}</legend>
+<div class="container" style="padding:0 50 50 50;">
+        <legend style="margin-bottom: 40px; padding-top: 80px; text-align: center;">{{legend}}</legend>
         <form action="" method="POST">
             {{ form.hidden_tag() }}
             <div class="input-group mb-3">
@@ -14,11 +13,11 @@
                 {{ form.content(class='form-control input_user', placeholder='Masukan isi postingan disini... ') }}                   
             </div> <br>
             <div class="d-flex justify-content-center mt-3 login_container">
-                {{ form.submit(class='btn btn-primary') }}
-            </div>
-    
-        </form>
-    
-    </div>
+                {{ form.submit(class='btn btn-primary mb-5') }}
+            </div>                         
+        </form>   
 </div>
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='content') }}
+
 {% endblock content %}

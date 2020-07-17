@@ -2,14 +2,15 @@ import os
 import secrets
 from PIL import Image
 from app import app, db, bcrypt
-from flask import render_template, redirect, url_for, flash, request
+from flask import render_template, redirect, url_for, flash, request, abort
 from .forms import LoginForm, RegisterForm, AccountForm, PostForm
 from .models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    posts = Post.query.all()
+    # posts = Post.query.all()
+    posts = Post.query.order_by(Post.date_posted.desc())    
     return render_template ('index.html',judul='Home', posts=posts)
 
 @app.route('/about')

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_login import current_user
 from flask_wtf.file import FileField, FileAllowed
+from flask_ckeditor import CKEditorField
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
 from .models import User
@@ -37,5 +38,6 @@ class AccountForm(FlaskForm):
  
 class PostForm(FlaskForm):
     title = StringField('title', validators=[DataRequired()])
-    content = TextAreaField('content', validators=[DataRequired()])
+    content = CKEditorField('content', validators=[DataRequired()])
+    # content = TextAreaField('content', validators=[DataRequired()])
     submit = SubmitField('Publish')
