@@ -8,20 +8,8 @@
 
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-      <div class="text-center">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-          {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
-      </div>
-
+     <h2 class="mb-3">Posts by {{user.username}} ({{ posts.total }})</h2>
       <!-- Blog Post -->
-
       {% for post in posts.items %}
       <div class="card mb-4">
         <div class="card-body">
@@ -39,9 +27,9 @@
       {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
         {% if page_num %}
           {% if posts.page == page_num %}
-            <a class="btn btn-primary mb-5" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-primary mb-5" href="{{ url_for('user_post', username=user.username, page=page_num) }}">{{ page_num }}</a>
           {% else %}
-            <a class="btn btn-outline-primary mb-5" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-outline-primary mb-5" href="{{ url_for('user_post',username=user.username, page=page_num) }}">{{ page_num }}</a>
           {% endif %}
         {% else %}
         ...
