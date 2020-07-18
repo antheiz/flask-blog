@@ -14,7 +14,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <h2><a class="article-title" href="{{ url_for('postingan', post_id=post.id) }}">{{ post.title }}</a></h2>
-          <p class="card-text">{{post.content|striptags}}</p>
+          <p class="card-text">{{post.content|safe|truncate(250)}}</p>
           <a href="{{url_for('postingan',post_id=post.id)}}" class="btn btn-primary">Read More &rarr;</a>
         </div>
         <div class="card-footer text-muted">
