@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_ckeditor import CKEditor
-# from flask_mail import Mail
+from flask_mail import Mail
+
 
 
 app = Flask(__name__)
@@ -19,7 +20,13 @@ login_manager.login_message_category = 'danger'
 ckeditor = CKEditor(app)
 app.config['CKEDITOR_HEIGHT'] = 600
 app.config['CKEDITOR_WIDTH'] = 1200
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'email'
+app.config['MAIL_PASSWORD'] = 'password'
 
+mail = Mail(app)
 
 from app import routes
 
