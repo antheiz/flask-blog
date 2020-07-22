@@ -1,5 +1,7 @@
 # flask-blog
-Learn Flask-blog
+
+**Result Project Flask-blog**
+
 ![Result this Project!](/app/static/img/result-flask-blog.png)
 
 ### how to run this program
