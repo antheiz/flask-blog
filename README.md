@@ -16,6 +16,8 @@ Learn Flask-blog
   * pip install flask-sqlalchemy
   * pip install flask-bcrypt
   * pip install flask-login
+  * pip install flask-ckeditor
+  * pip install flask-mail
    
   
  Thankyou !
