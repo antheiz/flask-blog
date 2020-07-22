@@ -16,7 +16,7 @@ class RegisterForm(FlaskForm):
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('email telah tersedia, silakan login')
+            raise ValidationError('email telah terpakai, mohon cari yg lain')
 
 class LoginForm(FlaskForm):
     email = StringField('email ', validators=[DataRequired(),Email('email salah, silakan periksa kembali') ])
