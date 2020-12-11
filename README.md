@@ -13,14 +13,7 @@
   #### Don't forget to manage 
   * python -m venv env-flask
   * source env-flask/bin/activate/
-  * pip install flask
-  * pip install flask-wtf
-  * pip install email-validator
-  * pip install flask-sqlalchemy
-  * pip install flask-bcrypt
-  * pip install flask-login
-  * pip install flask-ckeditor
-  * pip install flask-mail
+  * pip install -r requirements.txt
    
   
  Thankyou !
