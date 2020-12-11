@@ -6,4 +6,5 @@ flask-bcrypt
 flask-login 
 flask-ckeditor 
 flask-mail
+mysqlclient
 Pillow
