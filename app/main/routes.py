@@ -13,4 +13,4 @@ def index():
 
 @main.route('/about')
 def about():
-    return render_template('about.html', judul='About')
+    return render_template('about.jinja', judul='About')
