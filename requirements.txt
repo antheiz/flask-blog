@@ -6,5 +6,7 @@ flask-bcrypt
 flask-login 
 flask-ckeditor 
 flask-mail
+Flask-Migrate
 mysqlclient
 Pillow
+itsdangerous
